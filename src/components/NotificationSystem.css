@@ -1,0 +1,369 @@
+/* Notification Bell */
+.notification-bell {
+  position: relative;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-secondary);
+  padding: 8px;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.notification-bell:hover {
+  background: rgba(79, 172, 254, 0.1);
+  color: var(--primary-color);
+  transform: scale(1.1);
+}
+
+.notification-bell.has-unread {
+  color: var(--primary-color);
+  animation: bellShake 2s ease-in-out infinite;
+}
+
+@keyframes bellShake {
+  0%, 50%, 100% { transform: rotate(0deg); }
+  10%, 30% { transform: rotate(-10deg); }
+  20%, 40% { transform: rotate(10deg); }
+}
+
+.notification-badge {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  background: var(--secondary-color);
+  color: white;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 10px;
+  min-width: 16px;
+  text-align: center;
+  animation: badgePulse 2s ease-in-out infinite;
+}
+
+@keyframes badgePulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+}
+
+.connection-indicator {
+  position: absolute;
+  bottom: 2px;
+  right: 2px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.connection-indicator.connected {
+  background: var(--success-color);
+  box-shadow: 0 0 4px rgba(46, 204, 113, 0.5);
+}
+
+.connection-indicator.disconnected {
+  background: var(--error-color);
+  animation: disconnectedBlink 1s ease-in-out infinite;
+}
+
+@keyframes disconnectedBlink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0.3; }
+}
+
+/* Notification Panel */
+.notification-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 2000;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+  padding: 70px 20px 20px 20px;
+}
+
+.notification-panel {
+  background: var(--surface);
+  border-radius: 16px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 400px;
+  max-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  animation: panelSlideIn 0.3s ease-out;
+}
+
+@keyframes panelSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.notification-panel.dark {
+  background: var(--surface);
+  color: var(--text-primary);
+}
+
+.notification-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.notification-header h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.notification-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.mark-all-read-btn,
+.clear-all-btn {
+  background: none;
+  border: none;
+  color: var(--primary-color);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 6px 12px;
+  border-radius: 16px;
+  transition: all 0.2s ease;
+}
+
+.mark-all-read-btn:hover,
+.clear-all-btn:hover {
+  background: rgba(79, 172, 254, 0.1);
+}
+
+.clear-all-btn {
+  color: var(--error-color);
+}
+
+.clear-all-btn:hover {
+  background: rgba(231, 76, 60, 0.1);
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.close-btn:hover {
+  background: rgba(0, 0, 0, 0.1);
+  color: var(--text-primary);
+}
+
+/* Notification List */
+.notification-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0;
+}
+
+.no-notifications {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  color: var(--text-secondary);
+  text-align: center;
+}
+
+.no-notifications svg {
+  margin-bottom: 16px;
+  opacity: 0.5;
+}
+
+.notification-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border-color);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.notification-item:hover {
+  background: rgba(79, 172, 254, 0.05);
+}
+
+.notification-item.unread {
+  background: rgba(79, 172, 254, 0.1);
+  border-left: 4px solid var(--primary-color);
+}
+
+.notification-item.unread::before {
+  content: '';
+  position: absolute;
+  left: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 8px;
+  height: 8px;
+  background: var(--primary-color);
+  border-radius: 50%;
+}
+
+.notification-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  flex-shrink: 0;
+}
+
+.notification-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.notification-title {
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+.notification-message {
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.4;
+  margin-bottom: 4px;
+}
+
+.notification-time {
+  font-size: 11px;
+  color: var(--text-secondary);
+  opacity: 0.7;
+}
+
+.delete-notification-btn {
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  opacity: 0;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.notification-item:hover .delete-notification-btn {
+  opacity: 1;
+}
+
+.delete-notification-btn:hover {
+  background: rgba(231, 76, 60, 0.1);
+  color: var(--error-color);
+}
+
+/* Notification Footer */
+.notification-footer {
+  padding: 16px 20px;
+  border-top: 1px solid var(--border-color);
+  background: rgba(0, 0, 0, 0.02);
+}
+
+.connection-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.status-dot.connected {
+  background: var(--success-color);
+  box-shadow: 0 0 4px rgba(46, 204, 113, 0.5);
+}
+
+.status-dot.disconnected {
+  background: var(--error-color);
+  animation: disconnectedBlink 1s ease-in-out infinite;
+}
+
+/* Responsive Design */
+@media (max-width: 414px) {
+  .notification-overlay {
+    padding: 60px 10px 10px 10px;
+  }
+  
+  .notification-panel {
+    max-width: none;
+    width: 100%;
+  }
+  
+  .notification-header {
+    padding: 16px;
+  }
+  
+  .notification-item {
+    padding: 12px 16px;
+  }
+  
+  .notification-actions {
+    gap: 4px;
+  }
+  
+  .mark-all-read-btn,
+  .clear-all-btn {
+    padding: 4px 8px;
+    font-size: 11px;
+  }
+}
+
+/* Dark Mode Specific Styles */
+[data-theme="dark"] .notification-panel {
+  background: var(--surface);
+  border: 1px solid var(--border-color);
+}
+
+[data-theme="dark"] .notification-item:hover {
+  background: rgba(79, 172, 254, 0.1);
+}
+
+[data-theme="dark"] .notification-footer {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+[data-theme="dark"] .close-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+}

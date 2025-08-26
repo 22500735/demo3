@@ -1,0 +1,40 @@
+.swipeable-container {
+  touch-action: pan-y;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  transition: transform 0.2s ease-out;
+}
+
+.swipeable-container.swiping {
+  transition: none;
+}
+
+.swipe-indicator {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(79, 172, 254, 0.8);
+  color: white;
+  padding: 8px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  pointer-events: none;
+  z-index: 100;
+}
+
+.swipe-indicator.left {
+  right: 20px;
+}
+
+.swipe-indicator.right {
+  left: 20px;
+}
+
+.swipe-indicator.visible {
+  opacity: 1;
+}

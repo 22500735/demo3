@@ -1,0 +1,148 @@
+.japanese-mascot {
+  position: relative;
+  z-index: 50;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.japanese-mascot.floating {
+  position: fixed;
+  bottom: 160px;
+  right: 20px;
+}
+
+.japanese-mascot.inline {
+  display: inline-block;
+  margin: 0 8px;
+}
+
+.japanese-mascot.small .mascot-character {
+  font-size: 24px;
+  width: 32px;
+  height: 32px;
+}
+
+.japanese-mascot.medium .mascot-character {
+  font-size: 32px;
+  width: 48px;
+  height: 48px;
+}
+
+.japanese-mascot.large .mascot-character {
+  font-size: 48px;
+  width: 64px;
+  height: 64px;
+}
+
+.mascot-character {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.mascot-character:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.mascot-character:active {
+  transform: scale(0.95);
+}
+
+.japanese-mascot.animating .mascot-character {
+  animation: mascotBounce 0.6s ease-in-out;
+}
+
+@keyframes mascotBounce {
+  0%, 100% { transform: scale(1) rotate(0deg); }
+  25% { transform: scale(1.2) rotate(-5deg); }
+  50% { transform: scale(1.1) rotate(5deg); }
+  75% { transform: scale(1.15) rotate(-3deg); }
+}
+
+.mascot-message {
+  position: absolute;
+  bottom: 100%;
+  right: 0;
+  margin-bottom: 12px;
+  animation: messageAppear 0.3s ease-out;
+  pointer-events: none;
+}
+
+.message-bubble {
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  color: white;
+  padding: 8px 12px;
+  border-radius: 16px;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+  position: relative;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.message-bubble::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  right: 16px;
+  width: 0;
+  height: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 8px solid var(--secondary-color);
+}
+
+@keyframes messageAppear {
+  0% {
+    opacity: 0;
+    transform: translateY(10px) scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Seasonal themes */
+.japanese-mascot.spring {
+  filter: hue-rotate(90deg);
+}
+
+.japanese-mascot.summer {
+  filter: brightness(1.2) saturate(1.3);
+}
+
+.japanese-mascot.autumn {
+  filter: hue-rotate(30deg) saturate(1.1);
+}
+
+.japanese-mascot.winter {
+  filter: brightness(0.9) hue-rotate(200deg);
+}
+
+/* Mobile optimizations */
+@media (max-width: 414px) {
+  .japanese-mascot.floating {
+    bottom: 140px;
+    right: 16px;
+  }
+  
+  .japanese-mascot.medium .mascot-character {
+    font-size: 28px;
+    width: 44px;
+    height: 44px;
+  }
+  
+  .message-bubble {
+    font-size: 11px;
+    padding: 6px 10px;
+  }
+}

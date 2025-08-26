@@ -1,0 +1,87 @@
+.seasonal-theme {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.seasonal-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.floating-element {
+  position: absolute;
+  font-size: 20px;
+  opacity: 0.6;
+  animation: floatDown linear infinite;
+  pointer-events: none;
+}
+
+@keyframes floatDown {
+  0% {
+    transform: translateY(-100px) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.6;
+  }
+  90% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateY(100vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* Spring theme */
+.seasonal-theme.spring {
+  background: linear-gradient(180deg, #ffe4e6 0%, #fef7ff 100%);
+}
+
+.seasonal-theme.spring .floating-element {
+  color: #ff69b4;
+  animation-duration: 8s;
+}
+
+/* Summer theme */
+.seasonal-theme.summer {
+  background: linear-gradient(180deg, #fff7ed 0%, #fef3c7 100%);
+}
+
+.seasonal-theme.summer .floating-element {
+  color: #f59e0b;
+  animation-duration: 6s;
+}
+
+/* Autumn theme */
+.seasonal-theme.autumn {
+  background: linear-gradient(180deg, #fef3c7 0%, #fed7aa 100%);
+}
+
+.seasonal-theme.autumn .floating-element {
+  color: #ea580c;
+  animation-duration: 10s;
+}
+
+/* Winter theme */
+.seasonal-theme.winter {
+  background: linear-gradient(180deg, #f0f9ff 0%, #e0f2fe 100%);
+}
+
+.seasonal-theme.winter .floating-element {
+  color: #0ea5e9;
+  animation-duration: 12s;
+}
+
+/* Mobile optimizations */
+@media (max-width: 414px) {
+  .floating-element {
+    font-size: 16px;
+  }
+}
